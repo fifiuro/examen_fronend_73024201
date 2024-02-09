@@ -1,0 +1,88 @@
+<!-- <p>cliente-form works!</p> -->
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ isEdit ? "Editar Cliente" : "Agregar Cliente" }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          (click)="limpiar()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" [formGroup]="formCliente" (ngSubmit)="createCliente()">
+        <div class="modal-body">
+          <div class="mb-2">
+            <label for="" class="form-label">Nombre</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder="Ingrese Nombre"
+            />
+            <div
+              class="error mt-2"
+              style="color: red"
+              [hidden]="name.valid || name.pristine"
+            >
+              El Nombre es obligatorio
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="" class="form-label">Correo Eléctronico</label>
+            <input
+              type="text"
+              formControlName="email"
+              class="form-control"
+              placeholder="Ingrese Correo Eléctronico"
+            />
+            <div
+              class="error mt-2"
+              style="color: red"
+              [hidden]="email.valid || email.pristine"
+            >
+              El Correo Eléctronico es obligatorio
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="" class="form-label">Número de Celular</label>
+            <input
+              type="text"
+              formControlName="celular"
+              class="form-control"
+              placeholder="Ingrese Número de Celular"
+            />
+            <div
+              class="error mt-2"
+              style="color: red"
+              [hidden]="celular.valid || celular.pristine"
+            >
+              El Número de Celular es obligatorio
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            (click)="limpiar()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [hidden]="formCliente.invalid"
+            [disabled]="isClicked"
+          >
+            {{ isEdit ? "Editar" : "Guardar" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

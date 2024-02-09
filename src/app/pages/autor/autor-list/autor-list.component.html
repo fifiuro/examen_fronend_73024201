@@ -1,0 +1,146 @@
+<!-- <p>autor-list works!</p> -->
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mt-2">
+        <div class="card card-info">
+          <div class="card-header">
+            <h2 class="card-title">AUTORES</h2>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-10">
+                        <input
+                          type="text"
+                          name="nombre"
+                          class="form-control mr-2"
+                          placeholder="Esciba el Titulo del Libro"
+                          (input)="findAutor()"
+                          [(ngModel)]="buscar.autor"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="formAddLibro(true)"
+                    >
+                      Agregar Autor
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- TABLA DE DATOS -->
+            <section *ngIf="cargando; else loaderOnError">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>NUM</th>
+                    <th>NOMBRE</th>
+                    <th class="text-center">ACCIONES</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let item of autor
+                        | paginate
+                          : {
+                              itemsPerPage: cantReg,
+                              currentPage: pagination,
+                              totalItems: allAutor
+                            }
+                    "
+                  >
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                      <div class="dropdown text-center">
+                        <button
+                          class="btn btn-info dropdown-toggle"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Acciones
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a
+                              class="dropdown-item puntero"
+                              (click)="findAutorByID(item)"
+                            >
+                              <i class="far fa-pen-to-square"></i> Editar</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item puntero"
+                              (click)="eliminaAutor(item)"
+                            >
+                              <i class="fa fa-check"></i> Eliminar</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+            <div class="d-flex justify-content-center">
+              <div class="col-md-1">
+                <label for="form-label">Ver:</label>
+              </div>
+              <div class="col-md-1">
+                <select
+                  name="cantReg"
+                  [(ngModel)]="cantReg"
+                  class="form-control"
+                  (change)="numRegistro()"
+                >
+                  <option [value]="5">5</option>
+                  <option [value]="10" selected>10</option>
+                  <option [value]="20">15</option>
+                  <option [value]="30">20</option>
+                  <option [value]="40">30</option>
+                  <option [value]="50">40</option>
+                </select>
+              </div>
+              <div class="col-md-10">
+                <pagination-controls
+                  (pageChange)="renderPage($event)"
+                ></pagination-controls>
+              </div>
+            </div>
+            <!-- </section> -->
+            <!-- FIN -->
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Formulario Add & Edit -->
+  <div class="modal fade" id="modal-add-edit">
+    <app-autor-form
+      [tituloForm]="tituloForm"
+      [isEdit]="isEdit"
+      [item]="item"
+      (clearItem)="limpiar($event)"
+    ></app-autor-form>
+  </div>
+  <!-- /.modal -->
+  
+  <ng-template #loaderOnError>
+    <app-load-table></app-load-table>
+  </ng-template>
+  

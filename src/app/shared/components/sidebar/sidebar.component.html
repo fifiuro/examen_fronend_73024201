@@ -1,0 +1,60 @@
+<!-- <p>sidebar works!</p> -->
+<a [routerLink]="['/pages']" class="brand-link">
+  <img src="../../../../assets/img/logo.png" alt="" style="width: 20%;">
+  <span class="brand-text font-weight-light">Examen Técnico</span>
+</a>
+
+<div class="sidebar">
+  <!-- Construccion de Menu -->
+  <nav class="mt-2">
+    <ul
+      class="nav nav-pills nav-sidebar flex-column"
+      data-widget="treeview"
+      role="menu"
+      data-accordion="false"
+    >
+      <li class="nav-header">MENU PRINCIPAL</li>
+      <li class="nav-item">
+        <a [routerLink]="['autor/autor-list']" class="nav-link">
+          <i class="nav-icon fas fa-user-tie"></i>
+          <p>Autor</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['libro/libro-list']" class="nav-link">
+          <i class="nav-icon fas fa-book"></i>
+          <p>Libros</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['clientes/clientes-list']" class="nav-link">
+          <i class="nav-icon fas fa-users"></i>
+          <p>Clientes</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['prestamos/prestamo-list']" class="nav-link">
+          <i class="nav-icon fas fa-address-book"></i>
+          <p>Prestamos</p>
+        </a>
+      </li>
+
+      <li class="nav-header">REPORTES</li>
+      <li class="nav-item">
+        <a [routerLink]="['reportes/reporte-vencido']" class="nav-link">
+          <i class="nav-icon fas fa-bomb"></i>
+          <p>Prestamos Vencidos</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['reportes/reporte-sergmentados']" class="nav-link">
+          <i class="nav-icon fas fa-calendar-check"></i>
+          <p>Prestamos Segmentados</p>
+        </a>
+      </li>
+      
+    </ul>
+  </nav>
+  <!-- {{ menu }} -->
+  <!-- FIN -->
+</div>

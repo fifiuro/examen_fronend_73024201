@@ -1,0 +1,21 @@
+<section *ngIf="hasError; else loader">
+  Ha ocurrido un error, refrescar la pagina para intentar nuevamente.
+</section>
+<ng-template #loader>
+  <div class="d-flex justify-content-center">
+    <table class="table">
+      <tr>
+        <td class="text-center">
+          ESPERA UNOS MOMENTOS LA INFORMAION YA ESTARA LISTA. GRACIAS!!!
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center">
+          <div>
+            <p>CARGANDO... <i class="grande fas fa-spinner fa-spin"></i></p>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</ng-template>

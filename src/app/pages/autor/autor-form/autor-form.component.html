@@ -1,0 +1,58 @@
+<!-- <p>autor-form works!</p> -->
+<!-- <p>libro-form works!</p> -->
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          {{ isEdit ? "Editar Autor" : "Agregar Autor" }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          (click)="limpiar()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" [formGroup]="formAutor" (ngSubmit)="createAutor()">
+        <div class="modal-body">
+          <div class="mb-2">
+            <label for="" class="form-label">Nombre</label>
+            <input
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder="Ingrese Nombre del Autor"
+            />
+            <div
+              class="error mt-2"
+              style="color: red"
+              [hidden]="name.valid || name.pristine"
+            >
+              El Titulo del Libro es obligatorio
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-dismiss="modal"
+            (click)="limpiar()"
+          >
+            Cerrar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [hidden]="formAutor.invalid"
+            [disabled]="isClicked"
+          >
+            {{ isEdit ? "Editar" : "Guardar" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+ 

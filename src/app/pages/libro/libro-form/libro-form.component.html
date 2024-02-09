@@ -1,0 +1,103 @@
+<!-- <p>libro-form works!</p> -->
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        {{ isEdit ? "Editar Libro" : "Agregar Libro" }}
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-bs-dismiss="modal"
+        (click)="limpiar()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form action="" [formGroup]="formLibro" (ngSubmit)="createLibro()">
+      <div class="modal-body">
+        <div class="mb-2">
+          <label for="" class="form-label">Titulo</label>
+          <input
+            type="text"
+            formControlName="titulo"
+            class="form-control"
+            placeholder="Ingrese Titulo del Libro"
+          />
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="titulo.valid || titulo.pristine"
+          >
+            El Titulo del Libro es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Autor</label>
+          <ng-select [(ngModel)]="selectedLibro" formControlName="autor_id">
+            <ng-option *ngFor="let a of autores" [value]="a.id">{{
+              a.name
+            }}</ng-option>
+          </ng-select>
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="titulo.valid || titulo.pristine"
+          >
+            El Titulo del Libro es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Lote</label>
+          <input
+            type="text"
+            formControlName="lote"
+            class="form-control"
+            placeholder="Ingrese Número de Lote"
+          />
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="lote.valid || lote.pristine"
+          >
+            El Titulo del Libro es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Descripción</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            formControlName="description"
+            placeholder="Ingrese Descripción del Libro"
+          ></textarea>
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="description.valid || description.pristine"
+          >
+            La Descripción del Libro es obligatorio
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="limpiar()"
+        >
+          Cerrar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          [hidden]="formLibro.invalid"
+          [disabled]="isClicked"
+        >
+          {{ isEdit ? "Editar" : "Guardar" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

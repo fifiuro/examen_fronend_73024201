@@ -1,0 +1,125 @@
+<!-- <p>prestamos-form works!</p> -->
+<!-- <p>cliente-form works!</p> -->
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        {{ isEdit ? "Editar Prestamo" : "Agregar Prestamo" }}
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-bs-dismiss="modal"
+        (click)="limpiar()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <form action="" [formGroup]="formPrestamo" (ngSubmit)="createCliente()">
+      <div class="modal-body">
+        <div class="mb-2">
+          <label for="" class="form-label">Libro</label>
+          <ng-select [(ngModel)]="selectedLibro" formControlName="libro_id">
+            <ng-option *ngFor="let lib of libros" [value]="lib.id">{{
+              lib.titulo
+            }}</ng-option>
+          </ng-select>
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="libro_id.valid || libro_id.pristine"
+          >
+            Seleccione un Libro es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">cliente</label>
+          <ng-select [(ngModel)]="selectedCliente" formControlName="cliente_id">
+            <ng-option *ngFor="let cli of clientes" [value]="cli.id">{{
+              cli.name
+            }}</ng-option>
+          </ng-select>
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="cliente_id.valid || cliente_id.pristine"
+          >
+            Seleccione un Cliente es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Fecha de Prestamo</label>
+          <input
+            type="date"
+            formControlName="fecha_prestamo"
+            class="form-control"
+            placeholder="Ingrese la Fecha de Prestamo"
+          />
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="fecha_prestamo.valid || fecha_prestamo.pristine"
+          >
+            La Fecha de Prestamo es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Dias de Prestamo</label>
+          <input
+            type="number"
+            formControlName="dias_prestamo"
+            class="form-control"
+            placeholder="Ingrese los días de Prestamo"
+          />
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="dias_prestamo.valid || dias_prestamo.pristine"
+          >
+            Los Dias de Prestamo es obligatorio
+          </div>
+        </div>
+        <div class="mb-2">
+          <label for="" class="form-label">Estado</label>
+          <ng-select [(ngModel)]="selectedEstado" formControlName="estado">
+            <ng-option value="En Prestamo">En Prestamo</ng-option>
+            <ng-option value="Devuelto">Devuelto</ng-option>
+          </ng-select>
+          <div
+            class="error mt-2"
+            style="color: red"
+            [hidden]="libro_id.valid || libro_id.pristine"
+          >
+            Seleccione un Estado es obligatorio
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-bs-dismiss="modal"
+          (click)="limpiar()"
+        >
+          Cerrar
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          [hidden]="formPrestamo.invalid"
+          [disabled]="isClicked"
+        >
+          {{ isEdit ? "Editar" : "Guardar" }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+  $(function () {
+    //Date and time picker
+    $("#reservationdatetime").datetimepicker({
+      icons: { time: "far fa-clock" },
+    });
+  });
+</script>
